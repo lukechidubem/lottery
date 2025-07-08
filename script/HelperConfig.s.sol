@@ -9,6 +9,10 @@ import {LinkToken} from "test/mocks/LinkToken.sol";
 abstract contract CodeConstants {
     uint96 public constant MOCK_BASE_FEE = 0.25 ether;
     uint96 public constant MOCK_GAS_PRICE_LINK = 1e9;
+
+    address public constant FOUNDRY_DEFAULT_SENDER =
+        0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38;
+
     // LINK / ETH price
     int256 public constant MOCK_WEI_PER_UINT_LINK = 4e15;
 
@@ -27,6 +31,7 @@ contract HelperConfig is Script, CodeConstants {
         uint32 callbackGasLimit;
         uint256 subscriptionId;
         address link;
+        address account;
     }
 
     NetworkConfig public localNetworkConfig;
@@ -57,7 +62,8 @@ contract HelperConfig is Script, CodeConstants {
                 gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae,
                 callbackGasLimit: 500000,
                 subscriptionId: 2805045013738418560938242053069444938743071367241407175776612947986566016249,
-                link: 0x779877A7B0D9E8603169DdbD7836e478b4624789
+                link: 0x779877A7B0D9E8603169DdbD7836e478b4624789,
+                account: 0xea0a90A58865bb1AC365E00ED68792265A34Ac86
             });
     }
 
@@ -84,7 +90,8 @@ contract HelperConfig is Script, CodeConstants {
             gasLane: 0x787d74caea10b2b357790d5b5247c2f63d1d91572a9846f780606e4d953677ae,
             callbackGasLimit: 500000,
             subscriptionId: 0,
-            link: address(linkToken)
+            link: address(linkToken),
+            account: FOUNDRY_DEFAULT_SENDER
         });
 
         return localNetworkConfig;
